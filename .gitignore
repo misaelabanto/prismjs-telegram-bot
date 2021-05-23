@@ -1,0 +1,5 @@
+node_modules/
+src/screenshots/
+.env
+yarn-error.log
+test.ts
