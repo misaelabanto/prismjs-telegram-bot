@@ -1,7 +1,8 @@
-import { Opts, RawApi, Telegram } from '@/interfaces/telegram-service.interface';
+import { Opts, RawApi, Telegram } from '../interfaces/telegram-service.interface';
+import fetch from 'node-fetch'
+import FormData from 'form-data'
 import { BotCommand, ForceReply, InlineKeyboardMarkup, Message, MessageEntity, MsgWith, ParseMode, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update } from '@grammyjs/types';
-
-import { API_ENDPOINT } from '@/constants/telegram.constant'
+import { API_ENDPOINT } from '../constants/telegram.constant'
 
 export class TelegramService implements RawApi {
   private static async callApi<M extends keyof RawApi>(method: M, body: Opts[M] | FormData): Promise<ReturnType<Telegram[M]>> {
@@ -9,6 +10,7 @@ export class TelegramService implements RawApi {
       `${API_ENDPOINT}/${method}`,
       {
         body: body instanceof FormData ? body : JSON.stringify(body),
+        method: 'POST',
         headers: {
           'Content-Type': body instanceof FormData ? 'multipart/form-data' : 'application/json'
         }

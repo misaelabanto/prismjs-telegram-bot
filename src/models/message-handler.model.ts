@@ -1,7 +1,7 @@
 import { Update } from '@grammyjs/types'
-import { Highlighter } from '@/helpers/highlight'
-import { Screenshotter } from '@/helpers/screenshot'
-import { TelegramService } from '@/services/telegram.service'
+import { Highlighter } from '../helpers/highlight'
+import { Screenshotter } from '../helpers/screenshot'
+import { TelegramService } from '../services/telegram.service'
 
 export class MessageHandler {
   private static splitLanguageAndCode(text) {
