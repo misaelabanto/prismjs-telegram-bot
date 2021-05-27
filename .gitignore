@@ -3,3 +3,4 @@ src/screenshots/
 .env
 yarn-error.log
 test.ts
+dist/

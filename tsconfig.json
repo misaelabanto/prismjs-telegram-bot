@@ -1,17 +1,20 @@
 {
+  "include": ["src/**/*"],
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
+      "../*": ["src/*"],
     },
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "declaration": false,
-    "module": "es2020",
-    "moduleResolution": "node",
+    "module": "CommonJS",
+    "target": "ESNext",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "outDir": "dist",
     "typeRoots": [
       "node_modules/@types"
     ],

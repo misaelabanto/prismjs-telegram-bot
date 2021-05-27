@@ -1,5 +1,5 @@
 import * as Prism from 'prismjs'
-import { HTML_CODE_WRAPPER } from '@/constants/highlight.constant'
+import { HTML_CODE_WRAPPER } from '../constants/highlight.constant'
 
 export class Highlighter {
   static highlight(language: string, code: string) {

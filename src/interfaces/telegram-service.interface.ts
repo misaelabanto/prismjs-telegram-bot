@@ -1,4 +1,4 @@
-import { InputFileProxy } from '@/telegram-types'
+import { InputFileProxy } from '@grammyjs/types'
 
 export type Telegram = InputFileProxy<Buffer>['Telegram']
 export type Opts = InputFileProxy<Buffer>['Opts']

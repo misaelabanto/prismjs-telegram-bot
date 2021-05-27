@@ -1,7 +1,10 @@
 import express from 'express'
-import { WebhookConfig } from '@/config/webhook.config'
-import { WebhookRouter } from '@/routes/webhook.route'
-import { IndexRouter } from '@/routes/index.route'
+import dotenv from 'dotenv'
+import { WebhookConfig } from './config/webhook.config'
+import { WebhookRouter } from './routes/webhook.route'
+import { IndexRouter } from './routes/index.route'
+
+dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 3004
