@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "postbuild": "cp .env dist/.env && mkdir -p dist/public/screenshots"
   },
   "dependencies": {
     "@grammyjs/types": "^2.1.3",
