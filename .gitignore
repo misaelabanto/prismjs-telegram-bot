@@ -4,3 +4,4 @@ src/screenshots/
 yarn-error.log
 test.ts
 dist/
+src/public/screenshots/*

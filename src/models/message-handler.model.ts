@@ -16,9 +16,14 @@ export class MessageHandler {
     const html = Highlighter.highlight(language, code)
     const screenshotter = await Screenshotter.getInstance()
     const photoBuffer = await screenshotter.getScreenshotFromHtml(html)
-    await TelegramService.sendPhoto({
-      chat_id,
-      photo: photoBuffer as Buffer
-    })
+    try {
+      const result = await TelegramService.sendPhoto({
+        chat_id,
+        photo: photoBuffer as string
+      })
+      console.log('RESPONSE BODY:', result)
+    } catch(e) {
+      console.error(e)
+    }
   }
 }
