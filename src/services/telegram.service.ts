@@ -6,6 +6,8 @@ import { API_ENDPOINT } from '../constants/telegram.constant'
 
 export class TelegramService implements RawApi {
   private static async callApi<M extends keyof RawApi>(method: M, body: Opts[M] | FormData): Promise<ReturnType<Telegram[M]>> {
+    console.log('CALL', `${API_ENDPOINT}/${method}`)
+    console.log('Is instance of FormData? ', body instanceof FormData)
     const response = await fetch(
       `${API_ENDPOINT}/${method}`,
       {
@@ -15,12 +17,14 @@ export class TelegramService implements RawApi {
           'Content-Type': body instanceof FormData ? 'multipart/form-data' : 'application/json'
         }
       }
-    )
-    return response.json() as ReturnType<Telegram[M]>
+    ) as Response
+    console.log(response)
+    return response.text() as ReturnType<Telegram[M]>
   }
 
   public static async setWebhook(args: { url: string; certificate?: Buffer; ip_address?: string; max_connections?: number; allowed_updates?: readonly (keyof Update)[]; drop_pending_updates?: boolean }): Promise<true> {
-    this.callApi('setWebhook', args)
+    const res = await this.callApi('setWebhook', args)
+    console.log(res)
     return true
   }
   
@@ -29,10 +33,7 @@ export class TelegramService implements RawApi {
   }
   
   public static async sendPhoto(args: { chat_id: string | number; photo: string | Buffer; caption?: string; parse_mode?: ParseMode; caption_entities?: MessageEntity[]; disable_notification?: boolean; reply_to_message_id?: number; allow_sending_without_reply?: boolean; reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply }): Promise<Message.PhotoMessage> {
-    const formData = new FormData()
-    formData.append('chat_id', args.chat_id as string)
-    formData.append('photo', new Blob([args.photo], {type: 'image/png'}))
-    return this.callApi('sendPhoto', formData)
+    return this.callApi('sendPhoto', args)
   }
   
   public static async setMyCommands(args: { commands: readonly BotCommand[] }): Promise < true > {
